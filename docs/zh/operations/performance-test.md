@@ -9,7 +9,7 @@ toc_title: "\u6D4B\u8BD5\u786C\u4EF6"
 
 使用此指令，您可以在任何服务器上运行基本的ClickHouse性能测试，而无需安装ClickHouse软件包。
 
-1.  转到 “commits” 页数：https://github.com/ClickHouse/ClickHouse/commits/master
+1.  转到 “commits” 页：https://github.com/ClickHouse/ClickHouse/commits/master
 
 2.  点击第一个绿色复选标记或红色十字与绿色 “ClickHouse Build Check” 然后点击 “Details” 附近链接 “ClickHouse Build Check”. 在一些提交中没有这样的链接，例如与文档的提交。 在这种情况下，请选择具有此链接的最近提交。
 
@@ -26,7 +26,7 @@ toc_title: "\u6D4B\u8BD5\u786C\u4EF6"
       # Then do:
       chmod a+x clickhouse
 
-1.  下载配置:
+5.  下载配置:
 
 <!-- -->
 
@@ -36,7 +36,7 @@ toc_title: "\u6D4B\u8BD5\u786C\u4EF6"
       wget https://raw.githubusercontent.com/ClickHouse/ClickHouse/master/programs/server/config.d/path.xml -O config.d/path.xml
       wget https://raw.githubusercontent.com/ClickHouse/ClickHouse/master/programs/server/config.d/log_to_console.xml -O config.d/log_to_console.xml
 
-1.  下载基准测试文件:
+5.  下载基准测试文件:
 
 <!-- -->
 
@@ -44,7 +44,7 @@ toc_title: "\u6D4B\u8BD5\u786C\u4EF6"
       chmod a+x benchmark-new.sh
       wget https://raw.githubusercontent.com/ClickHouse/ClickHouse/master/benchmark/clickhouse/queries.sql
 
-1.  根据下载测试数据 [Yandex梅里卡数据集](../getting-started/example-datasets/metrica.md) 说明 (“hits” 表包含100万行）。
+6.  根据 [Yandex.Metrica dataset](../getting-started/example-datasets/metrica.md) 的步骤下载测试数据 (“hits” 表包含100万行）。
 
 <!-- -->
 
@@ -52,31 +52,31 @@ toc_title: "\u6D4B\u8BD5\u786C\u4EF6"
       tar xvf hits_100m_obfuscated_v1.tar.xz -C .
       mv hits_100m_obfuscated_v1/* .
 
-1.  运行服务器:
+7.  运行服务器:
 
 <!-- -->
 
       ./clickhouse server
 
-1.  检查数据：ssh到另一个终端中的服务器
+8.  检查数据：在另一个终端 ssh 到服务器
 
 <!-- -->
 
       ./clickhouse client --query "SELECT count() FROM hits_100m_obfuscated"
       100000000
 
-1.  编辑benchmark-new.sh，改变 `clickhouse-client` 到 `./clickhouse client` 并添加 `–-max_memory_usage 100000000000` 参数。
+9.  编辑benchmark-new.sh，修改 `clickhouse-client` 为 `./clickhouse client` 并添加 `–-max_memory_usage 100000000000` 参数。
 
 <!-- -->
 
       mcedit benchmark-new.sh
 
-1.  运行基准测试:
+10.  运行基准测试:
 
 <!-- -->
 
       ./benchmark-new.sh hits_100m_obfuscated
 
-1.  将有关硬件配置的编号和信息发送到clickhouse-feedback@yandex-team.com
+11.  将有关硬件配置的编号和信息发送到clickhouse-feedback@yandex-team.com
 
-所有结果都在这里公布：https://clickhouse.技术/基准/硬件/
+所有结果都公布在这里：https://clickhouse.tech/benchmark/hardware/
